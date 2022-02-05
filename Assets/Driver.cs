@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Driver : MonoBehaviour
 {
-    const float MAX_SPEED = 0.15f;
+    const float MAX_SPEED = 0.115f;
+    const float MIN_TURN = -0.15f;
+    const float MAX_TURN = -1 * MIN_TURN;
 
     float turnSpeed = 0.1f;
     float moveSpeed = 0.05f;
@@ -20,17 +22,49 @@ public class Driver : MonoBehaviour
     {
         transform.Rotate(0, 0, turnSpeed);
         transform.Translate(0, moveSpeed, 0);
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.W)) && moveSpeed * 1.1f < MAX_SPEED)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.W)) && moveSpeed * 1.001f < MAX_SPEED)
         {
+            if (moveSpeed == 0)
+            {
+                moveSpeed = 0.007f;
+            }
             moveSpeed *= 1.001f;
             Debug.Log("increasing speed");
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.S))
         {
-            moveSpeed *= 0.999f;
+            if (moveSpeed < 0.02f)
+            {
+                moveSpeed *= 0.992f;
+            }
+            else
+            {
+                moveSpeed *= 0.998f;
+            }
             Debug.Log("Decreasing speed");
         }
+        else { 
+            if (moveSpeed<0.008){
+                moveSpeed *= 0.994f;
+            }
+            else moveSpeed *= 0.9996f;
+            }
+        if (moveSpeed < 0.0005f) moveSpeed = 0;
+
         Debug.Log(moveSpeed);
+        if ((Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.A)) && turnSpeed <= MAX_TURN)
+        {
+            turnSpeed += 0.01f;
+        }
+        else if ((Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.D)) && turnSpeed >= MIN_TURN)
+        {
+            turnSpeed -= 0.01f;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            turnSpeed = 0;
+        }
+        else if (moveSpeed == 0) turnSpeed = 0;
     }
 }
 
