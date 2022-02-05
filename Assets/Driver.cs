@@ -8,6 +8,8 @@ public class Driver : MonoBehaviour
     const float MIN_TURN = -0.15f;
     const float MAX_TURN = -1 * MIN_TURN;
     static public float fuel = 50;
+    static public float maxFuel = 50;
+
 
     static public float turnSpeed = 0.1f;
     static public float moveSpeed = 0.05f;

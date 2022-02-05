@@ -8,6 +8,6 @@ public class FollowCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      transform.position = toFollow.transform.position + new Vector3(0,0,-1);
+      transform.position = toFollow.transform.position + new Vector3(0,0,-10);
     }
 }
