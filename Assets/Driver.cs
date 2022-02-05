@@ -7,10 +7,10 @@ public class Driver : MonoBehaviour
     const float MAX_SPEED = 0.115f;
     const float MIN_TURN = -0.15f;
     const float MAX_TURN = -1 * MIN_TURN;
-    float fuel = 50;
+    static public float fuel = 50;
 
-    float turnSpeed = 0.1f;
-    float moveSpeed = 0.05f;
+    static public float turnSpeed = 0.1f;
+    static public float moveSpeed = 0.05f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +27,7 @@ public class Driver : MonoBehaviour
         transform.Translate(0, moveSpeed, 0);
         if ((Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.W)) && moveSpeed * 1.001f < MAX_SPEED && fuel > 0)
         {
-            if (moveSpeed == 0)
+            if (moveSpeed < 0.007f)
             {
                 moveSpeed = 0.007f;
             }
@@ -46,6 +46,7 @@ public class Driver : MonoBehaviour
             {
                 moveSpeed *= 0.998f;
             }
+            Debug.Log(fuel);
             //Debug.Log("Decreasing speed");
         }
         else { 
@@ -56,7 +57,7 @@ public class Driver : MonoBehaviour
             }
         if (moveSpeed < 0.0005f) moveSpeed = 0;
 
-        Debug.Log(fuel);
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
             turnSpeed = 0;
