@@ -9,6 +9,7 @@ public class Collider : MonoBehaviour
     const float MAX_X = 700;
     const float MIN_X = -700;
     float scaleOfFuel = 36.87821f;
+    public static int score = 0;
 
 
 
@@ -31,6 +32,7 @@ public class Collider : MonoBehaviour
             other.transform.Translate(dx,dy,0);
             scaleOfFuel *= 0.9f;
             other.transform.localScale = new Vector3(scaleOfFuel,scaleOfFuel,scaleOfFuel);
+            score++;
 
         }
     }

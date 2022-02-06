@@ -5,7 +5,7 @@ using UnityEngine;
 public class FuelStation : MonoBehaviour
 {
     [SerializeField] GameObject car;
-    int count = 1;
+    public static int count = 1;
     // Start is called before the first frame update
     void Start()
     {

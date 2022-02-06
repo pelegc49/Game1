@@ -39,14 +39,14 @@ public class FuelPointer : MonoBehaviour
     {
         float ab;
         float a = Mathf.Rad2Deg * Mathf.Atan((car.transform.position.y - toPointTo.transform.position.y)/(car.transform.position.x - toPointTo.transform.position.x));
-        Debug.Log("angle to target-   "+a+" degrees");
+        //Debug.Log("angle to target-   "+a+" degrees");
         float b = Mathf.Rad2Deg * transform.rotation.z;
-        Debug.Log("angle of arrow-   "+b+" degrees");
+       // Debug.Log("angle of arrow-   "+b+" degrees");
         float diff = -(b-a);
         ab = (car.transform.position.x<toPointTo.transform.position.x)? -90+a : a-270;
         transform.rotation = ToQuaternion(0,0,ab);
 
-        Debug.Log("angle of diff-   "+diff+" degrees");
+        //Debug.Log("angle of diff-   "+diff+" degrees");
         transform.position = car.transform.position + new Vector3(-30,-25,-5);
         
     }
